@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Captura de Leads - Viva de Renda</title>
+<style>
+   body {
+     margin: 0;
+     padding: 0;
+     background-color: #000;
+     font-family: Arial, sans-serif;
+     color: white;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     min-height: 100vh;
+     text-align: center;
+   }
+   .container {
+     background: rgba(127, 0, 255, 0.1);
+     border: 2px solid #7f00ff;
+     padding: 30px 20px;
+     border-radius: 15px;
+     max-width: 500px;
+     width: 90%;
+   }
+   h1 {
+     font-size: 28px;
+     background: linear-gradient(to right, #7f00ff, #ffffff);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     margin-bottom: 20px;
+   }
+   .description {
+     font-size: 16px;
+     margin-bottom: 30px;
+   }
+   h3 {
+     font-size: 18px;
+     margin-bottom: 15px;
+   }
+   .item {
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     font-size: 16px;
+     margin: 10px 0;
+     text-align: left;
+   }
+   .item::before {
+     content: '✓';
+     background: linear-gradient(to right, #8000ff, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+     font-size: 20px;
+     margin-right: 7px;
+     flex-shrink: 0;
+   }
+   .item span.text {
+     color: white;
+   }
+   .subnote {
+     margin-top: 25px;
+     font-size: 14px;
+   }
+   form {
+     margin-top: 20px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+   }
+   input[type="text"],
+   input[type="email"] {
+     padding: 10px;
+     border-radius: 8px;
+     border: none;
+     margin-bottom: 10px;
+     width: 100%;
+     max-width: 400px;
+     font-size: 16px;
+   }
+   button {
+     background-color: #7f00ff;
+     color: white;
+     border: none;
+     padding: 12px 20px;
+     font-size: 16px;
+     border-radius: 30px;
+     cursor: pointer;
+     margin-top: 10px;
+     transition: transform 0.2s ease-in-out;
+   }
+   button:hover {
+     transform: scale(1.05);
+   }
+   .thank-you {
+     margin-top: 20px;
+     font-size: 16px;
+     display: none;
+   }
+   .thank-you a {
+     color: #7f00ff;
+     font-weight: bold;
+     text-decoration: none;
+   }
+   /* Ajuste para mobile */
+@media (max-width: 480px) {
+
+  h1 {
+
+    font-size: 24px;
+
+  }
+
+  .description {
+
+    font-size: 14px;
+
+  }
+
+  .item {
+
+    font-size: 14px;
+
+    justify-content: flex-start;
+
+    align-items: center;
+
+    text-align: left;
+
+    flex-direction: row; /* <- ícones continuam ao lado do texto */
+
+  }
+
+  .item::before {
+
+    margin-right: 7px; /* mantém espaçamento adequado */
+
+  }
+
+  .subnote {
+
+    font-size: 13px;
+
+  }
+
+}
+ 
+</style>
+</head>
+<body>
+<div class="container">
+<h1>APRENDA A CONTROLAR SEUS GASTOS E VIVA DE RENDA</h1>
+<p class="description">
+     Baixe agora o mini e-book e planilha de gerenciamento de gastos gratuitos, <br />
+     comece a controlar seus gastos e a investir com pouco dinheiro.
+</p>
+<h3>
+<span style="display: inline-block; padding: 6px 30px; border: 2px solid white; border-radius: 12px;">
+   Você irá:
+</span>
+</h3>
+<div class="item"><span class="icon"></span><span class="text">Começar com pouco;</span></div>
+<div class="item"><span class="icon"></span><span class="text">Controlar suas finanças;</span></div>
+<div class="item"><span class="icon"></span><span class="text">Aprender a fazer seu dinheiro à trabalhar para você.</span></div>
+<h3>
+<span style="display: inline-block; padding: 6px 30px; border: 2px solid white; border-radius: 12px;">
+   Você conquistará:
+</span>
+</h3>
+<div class="item"><span class="icon"></span><span class="text">Renda passiva;</span></div>
+<div class="item"><span class="icon"></span><span class="text">Liberdade financeira;</span></div>
+<div class="item"><span class="icon"></span><span class="text">Gerenciamento dos seus gastos.</span></div>
+<p class="subnote">Preencha os dados abaixo para receber</p>
+<form id="leadForm" action="https://app.formbricks.com/s/cmbjms6etdjyzxs01os05uf40" method="POST">
+<input type="text" name="name" placeholder="Seu nome" required />
+<input type="email" name="email" placeholder="Seu e-mail" required />
+<button type="submit">QUERO MEU MATERIAL GRATUITO</button>
+</form>
+<div class="thank-you" id="thankYouMessage">
+     ✅ Obrigado! O material foi enviado para o seu e-mail.<br><br>
+     👉 <a href="https://ig.me/m/branding.plr?text=Investimento" target="_blank">Clique aqui para receber também no Direct do Instagram</a><br><br>
+     Você receberá um conteúdo exclusivo com o próximo passo rumo à sua renda passiva.
+</div>
+</div>
+<script>
+   const form = document.getElementById('leadForm');
+   const thankYouMessage = document.getElementById('thankYouMessage');
+   form.addEventListener('submit', function (e) {
+     e.preventDefault();
+     const data = new FormData(form);
+     fetch(form.action, {
+       method: 'POST',
+       body: data
+     }).then(response => {
+       if (response.ok) {
+         form.style.display = 'none';
+         thankYouMessage.style.display = 'block';
+       } else {
+         alert('Erro ao enviar. Tente novamente.');
+       }
+     }).catch(error => {
+       alert('Erro na conexão. Tente mais tarde.');
+       console.error(error);
+     });
+   });
+</script>
+</body>
+</html>
